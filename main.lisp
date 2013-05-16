@@ -3,7 +3,10 @@
   (:export
     :dimension-sequence
     :arithmetic?
-    :geometric?))
+    :geometric?
+    :sum
+    :finite-summation
+    :infinite-summation))
 
 (in-package :series)
 
