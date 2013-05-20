@@ -11,6 +11,7 @@
 (in-package :series)
 
 (defun dimension-sequence (procedure min-n max-n)
+  "generates a sequence with the given domain and function"
   (map 'list
        #'(lambda (n)
            (funcall procedure n))
@@ -21,6 +22,7 @@
          :collect i)))
 
 (defun arithmetic? (seq)
+  "determines if the given sequence is arithmetic"
   (cond
     ((<= (length seq) 3)
      nil)
@@ -30,6 +32,7 @@
        nil))))
 
 (defun geometric? (seq)
+  "determines if the given sequence is geometric"
   (cond
     ((<= (length seq) 3)
      nil)
@@ -39,12 +42,16 @@
        nil))))
 
 (defun sum (series)
+  "calculates the total sum of the given sequence"
   (apply '+ series))
 
 (defun finite-summation (series n1 n2)
+  "calculates the sum of a sub section of the given sequence"
   (apply '+ (subseq series n1 n2)))
 
 (defun infinite-summation (procedure)
+  "calculates the sum of an infinite sequence.
+   series must be geometric and have a common ratio of -1 < r < 1"
   (let ((r (/
              (funcall procedure 1)
              (funcall procedure 0))))
